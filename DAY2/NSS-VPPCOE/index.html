@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSS-VPPCOE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <navbar class="navbar">
+            <div class="logodiv">
+                <img src="./asserts/logo.png" alt="NGO Logo" class="logo">
+            <span class="logo-text">VPPCOE & VA</span>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle Navigation">
+                ☰
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="dform.html">Donate</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </navbar>
+    </header>    
+    <h1>VPP's Blood Donation Camp</h1>
+    <div class="content-section">
+        <div class="text-content">
+            <h2 style="color:#ff4500">Join Us for a Life-Saving Blood Drive!</h2>
+            <p style="color:black;">
+                Every two seconds, someone in need requires a blood transfusion, and your donation can make all the difference. By donating blood, you help save lives and bring hope to patients facing critical medical situations.
+            </p>
+            <p style="color:black;">
+                Join us at our upcoming blood drive and make a difference in someone’s life. Your generosity can give someone another chance at life. Together, we can ensure a stable blood supply for those in need.
+            </p>
+            <a href="dform.html" class="call-to-action">Donate Now</a>
+        </div>
+        <div class="video">
+            <video src="./asserts/bdonar.mp4" style="border-radius: 5px;" autoplay loop muted></video>
+        </div>
+    </div>
+    <div class="image-container">
+        <div class="flex-container">
+            <h1>Learn about Process of Blood Donation and its Facts</h1>
+            <!-- <img src="bdc.jpg" alt="Donate Blood" class="donate-blood-img"> -->
+            <div class="padded-content">
+                <p class="para2">
+                <div class="video-content" >
+                    <iframe src="https://www.youtube.com/embed/6emUjt2-Jok?si=Nsuvv46skB2_2uNK" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                Magnam praesentium corporis soluta perferendis necessitatibus, tempora eligendi fugiat minima, officiis esse at eveniet molestiae facere deleniti rem similique. Vel sit voluptatem quae laborum magni cum, quibusdam laudantium totam alias? <br>
+                Nesciunt voluptatum facere minus quis deleniti maiores quia officia expedita delectus, reprehenderit cumque cupiditate quasi nam in fuga quos, magni modi nemo ut a? Soluta exercitationem deserunt maxime aspernatur totam.Voluptates modi sapiente illum molestias quia excepturi, qui quis odit eum atque fuga sint nisi inventore. Dicta voluptatem provident libero voluptas iusto!
+            </p></div>
+        </div>
+    </div>
+    <!-- Get in Touch Section -->
+    <section class="get-in-touch">
+        <h2>Get in Touch</h2>
+        <p>If you have any questions, want to know more, or would like to volunteer, please get in touch with us. Together, we can make a difference!</p>
+        <form class="contact-form" action="index.html" method="post">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Your Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <button type="submit" class="submit-button">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-about">
+                <h3>About Us</h3>
+                <p>We are a non-profit organization dedicated to saving lives through blood donation drives and creating awareness about the importance of donating blood.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="dform.html">Donate</a></li>
+                    <li><a href="register.html">Register</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact</h3>
+                <p>Email: support@nss.org</p>
+                <p>Phone: +1 234 567 890</p>
+                <p>Address: 123 NGO Street, City, Country</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 NSS-VPPCOE. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+<script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+    });
+</script>
+</html>

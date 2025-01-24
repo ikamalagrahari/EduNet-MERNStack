@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRCTC Train Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #eaf8ea;
+            border-radius: 8px;
+            border: 1px solid #c8e6c9;
+        }
+        .output p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>IRCTC Train Booking</h1>
+    <h2>Check Train Availability and Discounts</h2>
+    <form id="trainForm">
+        <label for="role">Select Role:</label>
+        <select id="role" onchange="updateForm()">
+            <option value="Student">Student</option>
+            <option value="Employee">Employee</option>
+            <option value="Senior Citizen">Senior Citizen</option>
+        </select>
+
+        <div id="studentFields">
+            <label for="students">Number of Students:</label>
+            <input type="number" id="students" min="0" value="0" required>
+        </div>
+
+        <div id="employeeFields">
+            <label for="employees">Number of Employees:</label>
+            <input type="number" id="employees" min="0" value="0" required>
+        </div>
+
+        <div id="seniorCitizenFields">
+            <label for="seniorCitizens">Number of Senior Citizens:</label>
+            <input type="number" id="seniorCitizens" min="0" value="0" required>
+        </div>
+
+        <label for="source">Source:</label>
+        <input type="text" id="source" required>
+
+        <label for="destination">Destination:</label>
+        <input type="text" id="destination" required>
+
+        <label for="ticketPrice">Ticket Price (₹):</label>
+        <input type="number" id="ticketPrice" min="0" value="0" required>
+
+        <button type="button" onclick="calculate()">Check Availability & Calculate</button>
+    </form>
+    <div class="output" id="output"></div>
+
+    <script>
+        // Update form based on role selection
+        function updateForm() {
+            const role = document.getElementById("role").value;
+            document.getElementById("studentFields").style.display = role === "Student" ? "block" : "none";
+            document.getElementById("employeeFields").style.display = role === "Employee" ? "block" : "none";
+            document.getElementById("seniorCitizenFields").style.display = role === "Senior Citizen" ? "block" : "none";
+        }
+
+        function calculate() {
+            const role = document.getElementById("role").value;
+
+            // Get user inputs
+            const students = parseInt(document.getElementById('students').value) || 0;
+            const employees = parseInt(document.getElementById('employees').value) || 0;
+            const seniorCitizens = parseInt(document.getElementById('seniorCitizens').value) || 0;
+            const source = document.getElementById('source').value.trim();
+            const destination = document.getElementById('destination').value.trim();
+            const ticketPrice = parseFloat(document.getElementById('ticketPrice').value) || 0;
+
+            // Validate inputs
+            if (!source || !destination || ticketPrice <= 0) {
+                document.getElementById('output').innerHTML = "<p>Please enter valid inputs!</p>";
+                return;
+            }
+
+            // Train availability check
+            let trainAvailable = students > 0 || employees > 0 || seniorCitizens > 0 || (source === 'Mumbai' && destination === 'Pune');
+
+            // Discount calculation
+            const totalStudentsDiscount = students * (ticketPrice * 0.25);
+            const totalEmployeesDiscount = employees * (ticketPrice * 0.10);
+            const totalSeniorCitizensDiscount = seniorCitizens * (ticketPrice * 1.0);
+            const totalDiscount = totalStudentsDiscount + totalEmployeesDiscount + totalSeniorCitizensDiscount;
+
+            // Calculate final price
+            const totalPassengers = students + employees + seniorCitizens;
+            const totalPriceWithoutDiscount = totalPassengers * ticketPrice;
+            const finalPrice = totalPriceWithoutDiscount - totalDiscount;
+
+            // Display output
+            const output = `
+                <h3>Train Availability: ${trainAvailable ? "Available" : "Not Available"}</h3>
+                <p>Role: ${role}</p>
+                <p>Total Passengers: ${totalPassengers}</p>
+                <p>Total Price without Discount: ₹${totalPriceWithoutDiscount.toFixed(2)}</p>
+                <p>Total Discount: ₹${totalDiscount.toFixed(2)}</p>
+                <p><strong>Final Price after Discount: ₹${finalPrice.toFixed(2)}</strong></p>
+            `;
+            document.getElementById('output').innerHTML = output;
+
+            // Reset form and output after calculation
+            document.getElementById('trainForm').reset();
+            updateForm();
+        }
+
+        // Initialize form on page load
+        window.onload = updateForm;
+    </script>
+</body>
+</html>
