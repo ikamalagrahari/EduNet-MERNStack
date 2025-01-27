@@ -1,0 +1,15 @@
+{
+  "name": "day10",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "day10": "file:",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.5"
+  }
+}
